@@ -1,8 +1,9 @@
 import { FaDollarSign, FaStar } from "react-icons/fa";
+import { SiBrandfolder } from "react-icons/si";
 
 
 const ProductCard = ({product}) => {
-    const {name, _id, image, creationDate, creationTime, category, price, description, ratings} = product;
+    const {name, _id, image, creationDate, creationTime, band, category, price, description, ratings} = product;
     return (
         <div className="text-center border-2 border-blue-950 p-3 shadow-2xl shadow-[#74707018] rounded-lg">
         <div className="flex justify-between pb-4 border-bottom">
@@ -32,7 +33,10 @@ const ProductCard = ({product}) => {
                     {ratings}
                 </div>
                     </div>
-            </div>     
+            </div> 
+            <div className="flex flex-row gap-2 text-lg font-semibold justify-center items-center">
+            <div><SiBrandfolder /></div>
+            {band}</div>    
         </div>
     
     </div>
