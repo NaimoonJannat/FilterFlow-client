@@ -44,7 +44,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/products"
+                to="/all-products"
                 className={({ isActive }) =>
                     isActive
                       ? "btn font-bold bg-blue-950 text-blue-500"
@@ -131,7 +131,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/products"
+                to="/all-products"
                 className={({ isActive }) =>
                     isActive
                       ? "btn font-bold bg-blue-950 text-blue-500"

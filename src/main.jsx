@@ -8,6 +8,8 @@ import {
 import Home from './components/Home';
 import Root from './Root';
 import Products from './components/Products';
+import Register from './components/Register';
+import Login from './components/Login';
 
  const router = createBrowserRouter([ 
   { 
@@ -21,7 +23,15 @@ import Products from './components/Products';
     {
       path:"/all-products",
       element:<Products></Products>
-    }
+    },
+    {
+      path:"/register",
+      element:<Register></Register>
+    },
+    {
+      path:"/login",
+      element:<Login></Login>
+    },
   ]
   }, 
  ]); 
