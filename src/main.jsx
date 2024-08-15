@@ -22,7 +22,8 @@ import Login from './components/Login';
     },
     {
       path:"/all-products",
-      element:<Products></Products>
+      element:<Products></Products>,
+      loader: () => fetch("http://localhost:3000/all-products")
     },
     {
       path:"/register",
