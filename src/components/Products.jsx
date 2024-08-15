@@ -11,13 +11,13 @@ const Products = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [priceRange, setPriceRange] = useState([0, Infinity]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6; // Number of products per page
+    const itemsPerPage = 6; 
 
-    // Get unique brand names and categories from products
+    // brand names and categories from products
     const brandNames = [...new Set(initialProducts.map(product => product.band))];
     const categoryNames = [...new Set(initialProducts.map(product => product.category))];
 
-    // Apply filters
+    //  filters
     const filteredProducts = initialProducts
         .filter(product =>
             product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -32,7 +32,7 @@ const Products = () => {
             product.price >= priceRange[0] && product.price <= priceRange[1]
         );
 
-    // Apply sorting
+    // sorting
     const sortedProducts = filteredProducts.sort((a, b) => {
         if (sortOption === "priceLowToHigh") {
             return a.price - b.price;
@@ -46,7 +46,7 @@ const Products = () => {
         return 0;
     });
 
-    // Pagination logic
+    // Pagination
     const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + itemsPerPage);
@@ -143,7 +143,7 @@ const Products = () => {
                 </div>
             </div>
 
-            {/* Products Grid */}
+            {/* Products */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2 lg:px-0">
                 {paginatedProducts.map(product => (
                     <ProductCard
@@ -153,7 +153,7 @@ const Products = () => {
                 ))}
             </div>
 
-            {/* Pagination Controls */}
+            {/* Pagination */}
             <div className="flex justify-center items-center space-x-4 mt-4">
                 <button
                     className="btn btn-outline"
