@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import ProductCard from "./ProductCard";
@@ -10,11 +10,14 @@ const Products = () => {
     const [selectedBrand, setSelectedBrand] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [priceRange, setPriceRange] = useState([0, Infinity]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6; // Number of products per page
 
     // Get unique brand names and categories from products
     const brandNames = [...new Set(initialProducts.map(product => product.band))];
     const categoryNames = [...new Set(initialProducts.map(product => product.category))];
 
+    // Apply filters
     const filteredProducts = initialProducts
         .filter(product =>
             product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -29,6 +32,7 @@ const Products = () => {
             product.price >= priceRange[0] && product.price <= priceRange[1]
         );
 
+    // Apply sorting
     const sortedProducts = filteredProducts.sort((a, b) => {
         if (sortOption === "priceLowToHigh") {
             return a.price - b.price;
@@ -42,9 +46,28 @@ const Products = () => {
         return 0;
     });
 
+    // Pagination logic
+    const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedProducts = sortedProducts.slice(startIndex, startIndex + itemsPerPage);
+
     const handlePriceRangeChange = (e) => {
         const value = e.target.value.split('-');
         setPriceRange([parseFloat(value[0]), parseFloat(value[1])]);
+        setCurrentPage(1); // Reset to first page when filter is applied
+    };
+
+    // Reset to first page when filters or sorting changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, sortOption, selectedBrand, selectedCategory]);
+
+    const handlePreviousPage = () => {
+        setCurrentPage(prev => (prev > 1 ? prev - 1 : prev));
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage(prev => (prev < totalPages ? prev + 1 : prev));
     };
 
     return (
@@ -122,12 +145,33 @@ const Products = () => {
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2 lg:px-0">
-                {sortedProducts.map(product => (
+                {paginatedProducts.map(product => (
                     <ProductCard
                         key={product._id}
                         product={product}
                     />
                 ))}
+            </div>
+
+            {/* Pagination Controls */}
+            <div className="flex justify-center items-center space-x-4 mt-4">
+                <button
+                    className="btn btn-outline"
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                <div>
+                    Page {currentPage} of {totalPages}
+                </div>
+                <button
+                    className="btn btn-outline"
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
             </div>
         </div>
     );
