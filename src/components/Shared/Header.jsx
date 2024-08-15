@@ -54,11 +54,6 @@ const Header = () => {
                 Products
               </NavLink>
             </li>
-            <li className="text-center items-center">
-              <p className="text-blue-950 text-base">Naimoon Jannat</p>
-              <button className="text-xs w-14 font-bold bg-blue-950 text-white p-1">Log Out</button>
-            </li>
-               
               </ul>) :
             (
               <ul className="menu menu-horizontal px-1">
@@ -112,7 +107,7 @@ const Header = () => {
 
         </div>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-center">
         <div className="hidden lg:flex">
         {
               user ? (
@@ -140,10 +135,6 @@ const Header = () => {
               >
                 Products
               </NavLink>
-            </li>
-            <li className="text-center items-center">
-              <p className="text-blue-950 text-base">Naimoon Jannat</p>
-              <button className="text-xs w-14 font-bold bg-blue-950 text-white p-1">Log Out</button>
             </li>
               </ul>) :
             (
@@ -190,6 +181,12 @@ const Header = () => {
         </div>
 
         
+      </div>
+      <div className="navbar-end">
+      <div className="text-center items-center">
+              <p className="text-blue-950 text-base">Naimoon Jannat</p>
+              <button className="text-xs btn btn-xs w-14 font-bold bg-blue-950 text-white p-1">Log Out</button>
+            </div>
       </div>
     </div>
        </div>
