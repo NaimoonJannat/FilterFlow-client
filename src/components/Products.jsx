@@ -57,7 +57,7 @@ const Products = () => {
         setCurrentPage(1); // Reset to first page when filter is applied
     };
 
-    // Reset to first page when filters or sorting changes
+    // Reset to first page
     useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery, sortOption, selectedBrand, selectedCategory]);
