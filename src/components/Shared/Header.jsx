@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-    const user = true;
+    const user = false;
     return (
        <div className="">
          <div className="navbar w-11/12 mx-auto">
