@@ -93,9 +93,9 @@ const Products = () => {
                         onChange={(e) => setSortOption(e.target.value)}
                     >
                         <option value="">Sort By</option>
-                        <option value="priceLowToHigh">Price: Low to High</option>
-                        <option value="priceHighToLow">Price: High to Low</option>
-                        <option value="newestFirst">Date Added: Newest First</option>
+                        <option value="priceLowToHigh">Low to High Price</option>
+                        <option value="priceHighToLow">High to Low Price</option>
+                        <option value="newestFirst">Time Added</option>
                     </select>
                 </div>
 
