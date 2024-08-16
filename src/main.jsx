@@ -13,6 +13,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import { ToastContainer } from 'react-toastify';
 import AuthProvider from './providers/AuthProvider'
+import PrivateRoute from './PrivateRoute';
 
  const router = createBrowserRouter([ 
   { 
@@ -25,7 +26,7 @@ import AuthProvider from './providers/AuthProvider'
     },
     {
       path:"/all-products",
-      element:<Products></Products>,
+      element:<PrivateRoute><Products></Products></PrivateRoute>,
       loader: () => fetch("http://localhost:3000/all-products")
     },
     {

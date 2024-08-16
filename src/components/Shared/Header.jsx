@@ -1,8 +1,21 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Header = () => {
-    const user = false;
-    return (
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+        toast.success("Logged Out Successfully!");
+      })
+      .catch((error) => {
+        console.error("Logout Error:", error);
+        toast.error("Error logging out. Please try again later.");
+      });
+  }; 
+  return (
        <div className="">
          <div className="navbar w-11/12 mx-auto">
       <div className="navbar-start">
@@ -183,10 +196,14 @@ const Header = () => {
         
       </div>
       <div className="navbar-end">
-      <div className="text-center items-center">
-              <p className="text-blue-950 text-base">Naimoon Jannat</p>
-              <button className="text-xs btn btn-xs w-14 font-bold bg-blue-950 text-white p-1">Log Out</button>
+      {
+        user ? (
+          <div className="text-center items-center">
+              <p className="text-blue-950 text-base font-bold">{user?.displayName}</p>
+              <button onClick={handleSignOut} className="text-xs btn btn-xs w-14 font-bold bg-blue-950 text-white p-1">Log Out</button>
             </div>
+        ): (<p></p>)
+      }
       </div>
     </div>
        </div>

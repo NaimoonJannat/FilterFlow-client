@@ -18,23 +18,25 @@ const AuthProvider = ({children}) => {
     const provider = new GoogleAuthProvider();
     const providerGit = new GithubAuthProvider();
 
-    const createUser = (name, email, photo, password) => {
+    const createUser = (name, email, password) => {
         setLoading(true);
-        // Create user
         return createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 const user = userCredential.user;
     
-                // Update the profile with the provided name and photoURL
+                // Update the profile with the provided name
                 return updateProfile(user, {
                     displayName: name,
-                    photoURL: photo
-                }).then(() => userCredential); // Return userCredential after profile update
+                }).then(() => {
+                    // Force reload of user data to ensure displayName is updated
+                    return auth.currentUser.reload().then(() => userCredential);
+                });
             })
             .catch(error => {
                 throw error;
             });
     }
+    
     
     
     // const createUser = (name, email, photo, password) =>{
@@ -47,10 +49,6 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider);
     }
 
-    const signInGithub = () =>{
-        setLoading(true);
-        return signInWithPopup(auth, providerGit);
-    }
 
     const signIn = (email, password) =>{
         setLoading(true);
@@ -80,7 +78,6 @@ const AuthProvider = ({children}) => {
         logOut,
         signIn,
         signInGoogle,
-        signInGithub
     }
 
     return (
