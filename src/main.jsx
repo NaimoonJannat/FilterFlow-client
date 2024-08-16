@@ -27,7 +27,7 @@ import PrivateRoute from './PrivateRoute';
     {
       path:"/all-products",
       element:<PrivateRoute><Products></Products></PrivateRoute>,
-      loader: () => fetch("http://localhost:3000/all-products")
+      loader: () => fetch("https://filterflow-server.vercel.app/all-products")
     },
     {
       path:"/register",
