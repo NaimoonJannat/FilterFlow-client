@@ -113,7 +113,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="flex flex-row md:gap-2 justify-center items-center">
-        <img className="w-8 md:w-12 hidden md:flex" src="logo.png" />
+        <img className="w-8 md:w-12 hidden md:flex" src="android-chrome-192x192.png" />
         <div className="text-2xl text-blue-950 font-playfair font-bold ">
             Filter <span className="text-blue-500">Flow</span>
         </div> 
